@@ -1,0 +1,356 @@
+<!doctype html><html lang="id" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>English Explorer</title><link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14213d;--bg:#eaf6ff;--card:#fff;--ln:#cfe3f5;--b:#0ea5e9;--bt:#fff;--m:#5b6b86;--g:#22c55e;--y:#ffd23f;--r:#ef4444;--navy:#14213d}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:linear-gradient(180deg,#d4edff 0,#f6fbff 360px) fixed;color:var(--ink);font:600 17px/1.55 Quicksand,system-ui,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,.big,.q,.lg,.lv,.btn{font-family:'Baloo 2',Quicksand,sans-serif;margin:0;line-height:1.2}
+h1{font-size:1.7rem}h2{font-size:1.2rem;margin:22px 0 10px}.big{font-size:1.9rem;font-weight:800}.mu{color:var(--m);font-size:.9rem}
+#cr{display:flex;justify-content:center;align-items:center;gap:10px;padding:6px 12px;font-size:.78rem;background:var(--navy);color:#cbd5e1}#cr a{color:#fff;display:inline-flex;gap:4px;align-items:center;text-decoration:none}
+#sb{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:6px;padding:10px max(14px,calc(50% - 440px));background:var(--navy);overflow-x:auto}
+#sb .lg{font-size:1.25rem;font-weight:800;color:#fff;margin-right:auto;white-space:nowrap}#sb .lg i{font-style:normal;color:var(--y)}
+#sb button{all:unset;cursor:pointer;padding:8px 14px;border-radius:99px;font-weight:700;font-size:.9rem;color:#b6c4dd;white-space:nowrap}#sb button.on{background:var(--b);color:#fff}#sb .mu{color:#8fa3c4;white-space:nowrap}
+main{max-width:880px;margin:0 auto;padding:22px 14px 60px}
+.card{background:var(--card);border:2px solid var(--ln);border-radius:22px;padding:16px;margin-bottom:12px;box-shadow:0 4px 0 var(--ln);animation:pop .3s ease both}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:6px}.grid .card{margin:0;text-align:center}
+.hero{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:22px;border-radius:26px;color:#fff;background:linear-gradient(135deg,#0ea5e9,#6366f1);margin-bottom:14px;box-shadow:0 6px 0 #3730a3}.hero p{margin:6px 0 0;opacity:.95}
+.hero::after{content:"🧭";font-size:3.6rem}.lv{background:rgba(255,255,255,.22);border-radius:16px;padding:8px 14px;font-size:1.2rem;white-space:nowrap}
+.btn{all:unset;cursor:pointer;display:inline-block;text-align:center;background:var(--b);color:var(--bt);font-weight:800;font-size:1.05rem;padding:11px 22px;border-radius:99px;box-shadow:0 5px 0 #0369a1}.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #0369a1}
+.btn.s{background:#fff;color:var(--ink);border:2px solid var(--ln);box-shadow:0 4px 0 var(--ln)}.btn.y{background:var(--y);color:#3b2a00;box-shadow:0 5px 0 #c99a00}
+.btn.lvb{display:inline-flex;flex-direction:column;align-items:center;min-width:132px;border-radius:20px}.btn.lvb small{font:700 .8rem Quicksand}
+.lvb.l1{background:#22c55e;box-shadow:0 5px 0 #15803d}.lvb.l2{background:#0ea5e9;box-shadow:0 5px 0 #0369a1}.lvb.l3{background:#8b5cf6;box-shadow:0 5px 0 #5b21b6}
+.btn:focus-visible,.opt:focus-visible,#sb button:focus-visible,.spk:focus-visible{outline:3px solid var(--y)}
+.bar{height:14px;background:#e1eefa;border-radius:12px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;border-radius:12px;background:repeating-linear-gradient(45deg,#22c55e,#22c55e 10px,#4ade80 10px,#4ade80 20px)}
+.opt{all:unset;display:block;cursor:pointer;width:100%;border:2px solid var(--ln);border-radius:18px;padding:14px 18px;margin-bottom:10px;font-size:1.1rem;background:#fff;box-shadow:0 4px 0 var(--ln)}
+.opt:hover{border-color:var(--b);transform:translateY(-2px)}.opt.ok{border-color:var(--g);background:#dcfce7;animation:pop .4s}.opt.no{border-color:var(--r);background:#fee2e2;animation:shk .35s}
+.q{font-size:1.35rem;font-weight:700;margin:8px 0 16px}.em{display:block;font-size:3.4rem;line-height:1.2;margin:6px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.sp{justify-content:space-between}
+.fb{border-radius:16px;padding:12px 16px;margin:8px 0}.fb.ok{background:#dcfce7}.fb.no{background:#fee2e2}
+.inp{width:100%;padding:13px 16px;border-radius:16px;border:2px solid var(--ln);background:#f6fbff;color:var(--ink);font:600 1.05rem Quicksand,sans-serif;margin:12px 0}
+.lbl{display:block;text-align:left;font-weight:800;font-size:.9rem;color:var(--m);margin:6px 0 -6px}
+details{margin:8px 0}summary{cursor:pointer;color:var(--b);font-weight:800}table{border-collapse:collapse;margin:6px auto}td{padding:6px 14px;border:1px solid var(--ln)}.tw{overflow-x:auto}
+.gfx{text-align:center;margin:6px auto;max-width:360px;color:var(--ink)}.gfx svg{max-width:100%;height:auto}.ex{background:#eef7ff;border-radius:14px;padding:10px 14px}
+.spk{all:unset;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--y);font-size:1rem;box-shadow:0 3px 0 #c99a00}.spk:active{transform:translateY(2px)}
+.vocab{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.w{display:inline-flex;align-items:center;gap:6px;background:#fff8d6;border:2px solid #f6d860;border-radius:99px;padding:3px 12px 3px 4px;font-size:.92rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0 14px}.chip{display:inline-flex;align-items:center;background:#e0f2fe;border:2px solid #7dd3fc;border-radius:99px;overflow:hidden}.chip button{border:0;background:none;padding:8px 12px;font:inherit;font-weight:800;cursor:pointer}.chip b{padding:8px 10px;cursor:pointer;color:#0369a1}.chip b:hover{background:#bae6fd}
+h2.sem{display:inline-block;margin:26px 0 10px;padding:8px 20px;border-radius:99px;color:#fff;background:var(--navy);box-shadow:0 4px 0 #0b1426}
+.mark{margin:6px 0 12px;color:var(--m);font-weight:700}
+.bab{cursor:pointer}.bab .big{font-size:1.5rem}.bab.b1{background:#e7f9ee}.bab.b2{background:#fff4dc}.bab.b3{background:#e6f3ff}.bab.b4{background:#f0e9ff}.bab.b5{background:#ffe9e6}.bab.b6{background:#e4f8f6}
+@keyframes pop{0%{transform:scale(.95);opacity:.6}60%{transform:scale(1.02)}100%{transform:scale(1);opacity:1}}
+@keyframes shk{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@media(max-width:800px){.hero{flex-direction:column;align-items:flex-start}.hero::after{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body><div id=cr><span>Dibuat oleh: Yusril Ainul Yakin, S.Pd</span><a href="https://github.com/Yusril852" target=_blank rel=noopener aria-label="GitHub Yusril852"><svg viewBox="0 0 16 16" width=14 height=14 fill=currentColor aria-hidden=true><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>Yusril852</a></div><nav id="sb"></nav><main id="app"></main>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>if(!window.firebase){["app","auth","database"].forEach(function(n){document.write("<scr"+"ipt src=\"https://cdn.jsdelivr.net/npm/firebase@10.12.2/firebase-"+n+"-compat.js\"></scr"+"ipt>")})}</script>
+<script>
+let LV=1;const $=s=>document.querySelector(s),R=(a,b)=>a+Math.floor(Math.random()*((b-a)*[.6,.8,1][LV-1]+1)),pick=a=>a[Math.floor(Math.random()*a.length)],sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+const gcd=(a,b)=>b?gcd(b,a%b):a,fr=(n,d)=>{const g=gcd(n,d);n/=g;d/=g;return d==1?''+n:n+'/'+d},fmt=n=>(Math.round(n*100)/100).toString().replace('.',','),p=x=>x<0?`(${x})`:x;
+function Q(q,a,e,w,g){const f=x=>typeof x=='number'?fmt(x):''+x;a=f(a);const n=parseFloat(a.replace(',','.'));w=(w||[1,-1,2,-2,10,-10].map(d=>n+d)).map(f);w=[...new Set(w)].filter(x=>x!=a&&(n<0||isNaN(n)||x[0]!='-'));const sf=a.endsWith('%')?'%':'';for(let d=3;w.length<3&&!isNaN(n)&&/^-?[\d,.]+%?$/.test(a)&&d<40;d++){const x=f(n+d)+sf;if(x!=a&&!w.includes(x))w.push(x)}return{q,a,e:e||'Jawaban yang tepat adalah '+a+'. Baca lagi ringkasan materinya.',g:g||'',o:sh([a,...sh(w).slice(0,3)])}}
+const bk=a=>()=>{const[x,y,w,e]=pick(a);return Q(x,y,e,w)};
+const tf=(h,m)=>String(h).padStart(2,'0')+'.'+String(m).padStart(2,'0');
+const clk=(h,m)=>{const ln=(d,l,s)=>`<line x1=50 y1=50 x2=${50+l*Math.sin(d*Math.PI/180)} y2=${50-l*Math.cos(d*Math.PI/180)} stroke=currentColor stroke-width=${s} stroke-linecap=round />`;return`<svg viewBox="0 0 100 100" width=150><circle cx=50 cy=50 r=47 fill=none stroke=currentColor stroke-width=3 />${Array.from({length:12},(_,i)=>`<text x=${50+37*Math.sin((i+1)*Math.PI/6)} y=${54-37*Math.cos((i+1)*Math.PI/6)} font-size=10 text-anchor=middle fill=currentColor>${i+1}</text>`).join('')}${ln((h%12+m/60)*30,24,5)}${ln(m*6,36,3)}</svg>`};
+const chart=(l,v,t)=>{const W=l.length*50+30;return`<svg viewBox="0 0 ${W} 135" width=100%>`+[0,2,4,6,8,10].map(k=>`<text x=22 y=${113-k*10} font-size=9 text-anchor=end fill=currentColor>${k}</text><line x1=26 x2=${W} y1=${110-k*10} y2=${110-k*10} stroke=currentColor opacity=.15 />`).join('')+(t=='l'?`<polyline fill=none stroke=var(--b) stroke-width=3 points="${v.map((x,i)=>`${50+i*50},${110-x*10}`).join(' ')}"/>${v.map((x,i)=>`<circle cx=${50+i*50} cy=${110-x*10} r=4 fill=var(--b) />`).join('')}`:v.map((x,i)=>`<rect x=${32+i*50} y=${110-x*10} width=36 height=${x*10} fill=var(--b) rx=4 />`).join(''))+l.map((x,i)=>`<text x=${50+i*50} y=128 text-anchor=middle font-size=11 fill=currentColor>${x}</text>`).join('')+'</svg>'};
+const tb=r=>'<table>'+r.map(x=>`<tr><td>${x[0]}<td>${x[1]}`).join('')+'</table>';
+const ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),NM=['Tom','Rina','Budi','Sari','Ani','Dina','Andi','Lina','Rudi','Maya'],
+N='zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty'.split(' '),
+KL=['1','2','3','4','5','6'],SK2=['SD Negeri 1 Patukangan','SD Negeri 2 Patukangan','SD Negeri 1 Purwokerto','SD Negeri 2 Purwokerto','SD IT Robbani','SD Muhammadiyah Purin','SD Universal Ananda'],GS=[1,2,3,4,5,6],
+CH=['Little Explorer','Friends & Animals','Words Around Me','Home & Hobbies','Time & Places','Feelings & Stories'],CI=['🌱','🐣','🎒','🏡','🧭','🚀'],
+HM=[['sem','🌱 FASE A · Kelas 1 & 2'],['mark','Kosakata dasar: sapaan, angka, warna, tubuh, keluarga, hewan, buah'],1,2,['sem','🌿 FASE B · Kelas 3 & 4'],['mark','Perluasan kosakata dan kalimat sederhana'],3,4,['sem','🌳 FASE C · Kelas 5 & 6'],['mark','Teks pendek, dialog, dan tata bahasa dasar'],5,6],
+SB=(n,m,a,b,c)=>({n,m,g:()=>pick([a,b,c][LV-1])()});
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+const spk=t=>`<button class=spk onclick="say(decodeURIComponent('${encodeURIComponent(t).replace(/'/g,'%27')}'))" aria-label="Dengarkan">🔊</button>`,
+BK=s=>s.split(';').map(x=>x.split('|')),SN=s=>s?s.trim().split('\n').map(l=>{const p=l.split('|');return[+p[0],p[1],p[2],p[3],p.slice(4).join('|')]}):[],
+sq=y=>Q(y[1],y[2],y[4]||`Jawaban: <b>${y[2]}</b>.`,y[3].split(',').map(z=>z.trim())),
+ws=a=>a.filter(x=>/^[A-Za-z]+$/.test(x[0])),mw=a=>a.filter(x=>/^[A-Za-z' ]+$/.test(x[0])&&x[0].includes(' ')),
+oth=(a,x)=>sh(a.filter(y=>y[0]!=x[0])).slice(0,4),
+ms=w=>{const o=new Set;for(let t=0;o.size<3&&t<80;t++){const c=[...w],i=ri(0,c.length-2),m=ri(0,2);if(c[i]==' '||c[i+1]==' ')continue;if(m==0)[c[i],c[i+1]]=[c[i+1],c[i]];else if(m==1)c.splice(i,0,c[i]);else c.splice(i,1);const r=c.join('');if(r!=w&&r.trim())o.add(r)}return[...o]},
+voc=B=>`<div class=vocab>${B.map(y=>`<span class=w>${spk(y[0])}${y[2]||''} <b>${y[0]}</b> = ${y[1]}</span>`).join('')}</div>`,
+GN={
+pic:B=>()=>{const E=B.filter(y=>y[2]),x=pick(E);return Q(`What is this? <span class=em>${x[2]}</span>`,x[0],`${x[2]} = <b>${x[0]}</b> (${x[1]}).`,oth(E,x).map(y=>y[0]))},
+e2i:B=>()=>{const x=pick(B);return Q(`Apa arti <b>${x[0]}</b>?`,x[1],`<b>${x[0]}</b> artinya <b>${x[1]}</b>.`,oth(B,x).map(y=>y[1]))},
+i2e:B=>()=>{const x=pick(B);return Q(`Bahasa Inggris dari <b>${x[1]}</b> adalah...`,x[0],`<b>${x[1]}</b> = <b>${x[0]}</b>.`,oth(B,x).map(y=>y[0]))},
+lis:B=>()=>{const x=pick(B);return Q('Listen. Which word do you hear? (Dengarkan, lalu pilih)',x[0],`Kata yang diucapkan: <b>${x[0]}</b> (${x[1]}).`,oth(B,x).map(y=>y[0]),`<div class=gfx>${spk(x[0])}</div>`)},
+spl:B=>()=>{const x=pick(B);return Q(`Which spelling is correct? ${x[2]||''} <b>${x[1]}</b>`,x[0],`Ejaan yang benar: <b>${x[0]}</b>.`,ms(x[0]))},
+mis:B=>()=>{const x=pick(B),w=x[0],v=[...w].map((c,i)=>/[aeiou]/i.test(c)?i:-1).filter(i=>i>=0);if(!v.length)return GN.lis(B)();const i=pick(v),a=w[i].toLowerCase();return Q(`Complete the word: ${x[2]||''} <b>${w.slice(0,i)+'_'+w.slice(i+1)}</b>`,a,`${w}: huruf yang hilang <b>${a}</b>.`,'aeiou'.split('').filter(c=>c!=a))},
+scr:B=>()=>{const W=ws(B),x=pick(W);let s;do s=sh([...x[0]]).join('');while(s==x[0]&&new Set(x[0]).size>1);return Q(`Arrange the letters: <b>${[...s.toUpperCase()].join(' ')}</b> ${x[2]||''}`,x[0],`Susunan benar: <b>${x[0]}</b> (${x[1]}).`,oth(W,x).map(y=>y[0]))},
+cnt:B=>()=>{const x=pick(ws(B));return Q(`How many letters are in <b>${x[0]}</b>? ${x[2]||''}`,x[0].length,`${[...x[0].toUpperCase()].join('-')} = ${x[0].length} huruf.`)},
+wo:B=>()=>{const M=mw(B),x=pick(M),p=x[0].split(' ');let s;do s=sh(p);while(s.join(' ')==x[0]);return Q(`Arrange the words: <b>${s.join(' / ')}</b>`,x[0],`Urutan benar: <b>${x[0]}</b> (${x[1]}).`,[...p.map(()=>sh(p).join(' ')),...oth(M,x).map(y=>y[0])])}
+},
+topic=(n,m,bs,ss,x={})=>{const B=BK(bs),I=SN(ss),W=ws(B),M=mw(B),si=L=>I.filter(y=>y[0]==L).map(y=>()=>sq(y)),
+a=[GN.e2i(B),GN.i2e(B),...(B.some(y=>y[2])?[GN.pic(B)]:[]),...si(1),...(x.a||[])],
+b=[GN.spl(B),GN.mis(B),GN.lis(B),...si(2),...(x.b||[])],
+c=[...(W.length>=8?[GN.scr(B),GN.cnt(B)]:[GN.mis(B)]),...(M.length>=5?[GN.wo(B)]:[]),...si(3),...(x.c||[])];
+return SB(n,m+voc(B),a,b,c)},
+add=(lo,hi,bm)=>()=>{const a=ri(lo,hi),b=ri(1,bm),s=a+b;return Q(`${N[a]} + ${N[b]} = ?`,N[s],`${a} + ${b} = ${s} → <b>${N[s]}</b>.`,[N[s-1],N[s+1],N[s+2],N[s-2],N[s-3]].filter(Boolean))},
+sub=(lo,hi)=>()=>{const a=ri(lo,hi),b=ri(1,4),s=a-b;return Q(`${N[a]} − ${N[b]} = ?`,N[s],`${a} − ${b} = ${s} → <b>${N[s]}</b>.`,[N[s-1],N[s+1],N[s+2],N[s-2]].filter(Boolean))},
+seq=(lo,hi)=>()=>{const a=ri(lo,hi);return Q(`${N[a]}, ${N[a+1]}, ___`,N[a+2],`${a}, ${a+1}, ${a+2} → <b>${N[a+2]}</b>.`,[N[a+1],N[a+3],N[a],N[a-1]].filter(Boolean))},
+DY=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],MO=['January','February','March','April','May','June','July','August','September','October','November','December'],
+ab=(A,k)=>()=>{const i=ri(0,A.length-1),d=pick([1,-1]),r=A[(i+d+A.length)%A.length];return Q(`What ${k} comes ${d>0?'after':'before'} <b>${A[i]}</b>?`,r,`Urutan: ${A.join(', ')}.`,sh(A.filter(z=>z!=r&&z!=A[i])))},
+nth=()=>{const i=ri(0,11);return Q(`Month number <b>${i+1}</b> is...`,MO[i],`${MO.join(', ')}.`,sh(MO.filter(z=>z!=MO[i])))},
+PR=[['in','di dalam'],['on','di atas'],['under','di bawah'],['beside','di samping'],['behind','di belakang'],['in front of','di depan']],OB=[['cat','kucing'],['ball','bola'],['book','buku'],['bird','burung'],['pen','pulpen'],['toy','mainan']],PT=[['box','kotak'],['table','meja'],['bag','tas'],['chair','kursi'],['bed','tempat tidur']],
+pp=h=>()=>{const o=pick(OB),t=pick(PT),r=pick(PR);return Q(`The ${o[0]} is ___ the ${t[0]}.<br><span class=mu>${h?`${o[1]} ${r[1]} ${t[1]}`:`(${r[1]})`}</span>`,r[0],`${r[0]} = ${r[1]}.`,PR.filter(z=>z!=r).map(z=>z[0]))},
+mid=()=>{const[a,b,c]=sh(NM).slice(0,3);return Q(`${a} is between ${b} and ${c}. Who is in the middle?`,a,`<b>between</b> = di antara, jadi ${a} di tengah.`,[b,c,'No one'])},
+frn=()=>{const[a,b]=sh(NM);return Q(`${a} is in front of ${b}. Who is behind?`,b,`<b>in front of</b> = di depan, <b>behind</b> = di belakang.`,[a,'Both','No one'])},
+tx=(h,m)=>m==0?`It is ${N[h]} o'clock.`:m==30?`It is half past ${N[h]}.`:m==15?`It is a quarter past ${N[h]}.`:`It is a quarter to ${N[h%12+1]}.`,
+tmq=ms=>()=>{const h=ri(1,12),m=pick(ms),t=ri(0,2),A=tx(h,m),h2=h%12+1,h3=(h+9)%12+1,
+w=[0,15,30,45].filter(z=>z!=m).map(z=>tx(h,z)).concat([tx(h2,m),tx(h3,m)]).filter((z,i,r)=>z!=A&&r.indexOf(z)==i);
+if(t==0)return Q('What time is it?',A,`Jarum pendek di ${h}, jarum panjang di ${m/5||12}. ${A}`,w,`<div class=gfx>${clk(h,m)}</div>`);
+if(t==1)return Q(`<b>${tf(h,m)}</b>: how do we say it in English?`,A,`${tf(h,m)} = ${A}`,w);
+return Q(`${A} Which time is it?`,tf(h,m),`${A} = ${tf(h,m)}`,[tf(h,(m+30)%60),tf(h2,m),tf(h3,m),tf(h,(m+15)%60)])},
+OP=[['tall','short'],['big','small'],['happy','sad'],['fast','slow'],['hot','cold'],['old','young'],['clean','dirty']],
+op=()=>{const p=pick(OP),r=ri(0,1);return Q(`The opposite of <b>${p[r]}</b> is...`,p[1-r],`${p[r]} ↔ ${p[1-r]}`,sh(OP.flat().filter(z=>!p.includes(z))))},
+VB=('play|played|bermain|football in the park;go|went|pergi|to the market;visit|visited|mengunjungi|my grandmother;watch|watched|menonton|a movie;clean|cleaned|membersihkan|my room;help|helped|membantu|my mother;eat|ate|makan|fried rice;see|saw|melihat|a big bird;buy|bought|membeli|a new book;swim|swam|berenang|in the river;write|wrote|menulis|a letter;take|took|mengambil|a photo;have|had|punya|a big breakfast;study|studied|belajar|English').split(';').map(x=>x.split('|')),
+SJ=['I','She','He','They','We','My friend'],TP=['yesterday','last Sunday','last week','two days ago','last night'],TF=['tomorrow','next week','next month','next Sunday','next year'],
+wr=v=>[v[0],v[0].endsWith('e')?v[0]+'d':v[0]+'ed',v[0]+'ing',v[0]+'s'],
+pf=()=>{const v=pick(VB);return Q(`Past form of <b>${v[0]}</b> (${v[2]}) is...`,v[1],`${v[0]} → <b>${v[1]}</b>.`,wr(v))},
+gp=()=>{const v=pick(VB);return Q(`${pick(SJ)} ___ (${v[0]}) ${v[3]} ${pick(TP)}.`,v[1],`Waktu lampau → pakai bentuk lampau: <b>${v[1]}</b>.`,wr(v))},
+ng=()=>{const v=pick(VB);return Q(`${pick(SJ)} didn't ___ ${v[3]} ${pick(TP)}.`,v[0],`Setelah <i>didn't</i> pakai kata kerja dasar: <b>${v[0]}</b>.`,[v[1],v[0]+'s',v[0]+'ing'])},
+dq=()=>{const v=pick(VB);return Q(`Did you ___ ${v[3]} ${pick(TP)}?`,v[0],`Setelah <i>did</i> pakai kata kerja dasar: <b>${v[0]}</b>.`,[v[1],v[0]+'s',v[0]+'ing'])},
+fw=()=>{const v=pick(VB);return Q(`${pick(SJ)} ___ ${v[0]} ${v[3]} ${pick(TF)}.`,'will','Rencana masa depan → <b>will</b> + kata kerja dasar.',['did','was','has'])},
+ff=()=>{const v=pick(VB);return Q(`${pick(SJ)} ___ (${v[0]}) ${v[3]} ${pick(TF)}.`,'will '+v[0],`Masa depan: <b>will ${v[0]}</b>.`,[v[1],v[0]+'s',v[0]+'ing'])},
+fn=()=>{const v=pick(VB);return Q(`${pick(SJ)} ___ ${v[0]} ${v[3]} ${pick(TF)}. (tidak akan)`,"won't",'<b>won\'t</b> = will not (tidak akan).',["isn't","didn't","doesn't"])};
+const T={
+1:[
+topic('Greetings','Sapaan: <b>Hello</b>/<b>Hi</b> saat bertemu, <b>Good morning</b> (pagi), <b>Good night</b> (sebelum tidur), <b>Goodbye</b> saat berpisah. Klik 🔊 untuk mendengar.','Hello|Halo|👋;Hi|Hai|🙋;Good morning|Selamat pagi|🌅;Good afternoon|Selamat siang|☀️;Good evening|Selamat sore|🌆;Good night|Selamat tidur|🌙;Goodbye|Selamat tinggal|🤝;See you|Sampai jumpa|🙌;Thank you|Terima kasih|🙏;Please|Tolong|🥺;Sorry|Maaf|😔;Welcome|Selamat datang|🎉',`
+2|Pagi hari: "___ morning, Mom!"|Good|Bye,Night,Sorry|"Good morning" dipakai di pagi hari.
+2|Kamu pergi dan berkata "___!"|Goodbye|Hello,Welcome,Please|Goodbye = selamat tinggal.
+2|Temanmu memberi hadiah. Kamu berkata "___!"|Thank you|Sorry,Goodbye,Good night|Thank you = terima kasih.
+3|Sebelum tidur kamu berkata "Good ___, Dad."|night|morning,afternoon,hello|Good night dipakai sebelum tidur.
+3|Kamu menabrak temanmu. Kamu berkata "___."|Sorry|Welcome,Hello,Goodbye|Sorry = maaf.
+3|"Hello, I am Tom." Jawab: "Hi, ___ is Rina."|My name|Name my,I name,Me|Gunakan "My name is ...".`),
+topic('Alphabet & Numbers','Alfabet: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z. Angka 1-10: one, two, three, four, five, six, seven, eight, nine, ten.','One|1|1️⃣;Two|2|2️⃣;Three|3|3️⃣;Four|4|4️⃣;Five|5|5️⃣;Six|6|6️⃣;Seven|7|7️⃣;Eight|8|8️⃣;Nine|9|9️⃣;Ten|10|🔟',`
+2|Huruf setelah A adalah...|B|C,D,Z|Urutan: A, B, C.
+2|Huruf setelah C adalah...|D|B,E,F|Urutan: C, D, E.
+2|Huruf sebelum M adalah...|L|K,N,O|Urutan: K, L, M.
+3|Lengkapi urutan: C, D, ___, F|E|B,G,H|Urutan: C, D, E, F.
+3|Huruf terakhir alfabet adalah...|Z|Y,X,A|Alfabet berakhir di Z.
+3|Kata "apple" diawali huruf...|A|B,E,P|Apple = A-P-P-L-E.`,{b:[add(1,5,5)],c:[sub(5,10),add(2,6,4)]}),
+topic('Colors & Shapes','Warna: red, blue, yellow, green. Bentuk: circle (lingkaran), square (persegi), triangle (segitiga), rectangle (persegi panjang).','Red|Merah|🔴;Blue|Biru|🔵;Yellow|Kuning|🟡;Green|Hijau|🟢;Orange|Oranye|🟠;Purple|Ungu|🟣;Brown|Cokelat|🟤;Black|Hitam|⚫;White|Putih|⚪;Circle|Lingkaran;Square|Persegi;Triangle|Segitiga;Rectangle|Persegi panjang;Star|Bintang|⭐',`
+2|The sky is ___.|blue|red,black,green|Langit berwarna biru (blue).
+2|A banana is ___.|yellow|purple,blue,white|Pisang berwarna kuning (yellow).
+2|A coin is a ___.|circle|square,triangle,star|Koin berbentuk lingkaran (circle).
+3|A slice of pizza looks like a ___.|triangle|circle,square,rectangle|Irisan pizza berbentuk segitiga.
+3|A book is shaped like a ___.|rectangle|circle,triangle,star|Buku berbentuk persegi panjang.
+3|Red + yellow makes ___.|orange|green,purple,brown|Merah dan kuning menjadi oranye.`),
+topic('My Body','Bagian tubuh: head (kepala), eyes (mata), ear (telinga), nose (hidung), mouth (mulut), hand (tangan), foot (kaki).','Head|Kepala;Eyes|Mata|👀;Ear|Telinga|👂;Nose|Hidung|👃;Mouth|Mulut|👄;Hand|Tangan|✋;Arm|Lengan|💪;Leg|Tungkai|🦵;Foot|Telapak kaki|🦶;Tooth|Gigi|🦷;Tongue|Lidah|👅;Finger|Jari|☝️;Knee|Lutut',`
+2|I see with my ___.|eyes|ears,nose,mouth|Kita melihat dengan mata (eyes).
+2|I smell with my ___.|nose|eyes,ears,hand|Kita mencium dengan hidung (nose).
+2|I hear with my ___.|ears|eyes,nose,mouth|Kita mendengar dengan telinga (ears).
+3|I eat with my ___.|mouth|nose,ears,eyes|Kita makan dengan mulut (mouth).
+3|I clap with my ___.|hands|feet,nose,eyes|Bertepuk tangan memakai tangan (hands).
+3|I kick a ball with my ___.|foot|hand,ear,nose|Menendang bola memakai kaki (foot).`)
+],
+2:[
+topic('Numbers 11-20','Angka 11-20: eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty.','Eleven|11;Twelve|12;Thirteen|13;Fourteen|14;Fifteen|15;Sixteen|16;Seventeen|17;Eighteen|18;Nineteen|19;Twenty|20','',{a:[seq(11,18),add(11,15,5)],b:[add(11,15,5),sub(15,20)],c:[add(10,15,5),sub(12,20),seq(11,18)]}),
+topic('My Family','Anggota keluarga: father (ayah), mother (ibu), brother (saudara laki-laki), sister (saudara perempuan), grandfather (kakek), grandmother (nenek).','Father|Ayah|👨;Mother|Ibu|👩;Brother|Saudara laki-laki|👦;Sister|Saudara perempuan|👧;Grandfather|Kakek|👴;Grandmother|Nenek|👵;Baby|Bayi|👶;Uncle|Paman|🧔;Aunt|Bibi;Cousin|Sepupu|🧒;Family|Keluarga|👪;Parents|Orang tua',`
+2|My father's wife is my ___.|mother|sister,aunt,brother|Istri ayah = ibu (mother).
+2|My mother's father is my ___.|grandfather|uncle,brother,father|Ayah dari ibu = kakek (grandfather).
+2|My mother's son is my ___.|brother|sister,uncle,cousin|Anak laki-laki ibuku = saudara laki-lakiku.
+3|My father is Budi. ___ name is Budi.|His|Her,My,Its|Untuk laki-laki pakai <b>His</b>.
+3|She is my mother. ___ is kind.|She|He,It,They|Untuk perempuan pakai <b>She</b>.
+3|My father's brother is my ___.|uncle|aunt,cousin,grandfather|Saudara laki-laki ayah = paman (uncle).`),
+topic('Animals','Hewan peliharaan: cat, dog, rabbit, bird, fish. Hewan ternak: cow, goat, chicken, duck, horse, sheep.','Cat|Kucing|🐱;Dog|Anjing|🐶;Bird|Burung|🐦;Fish|Ikan|🐟;Rabbit|Kelinci|🐰;Cow|Sapi|🐮;Goat|Kambing|🐐;Chicken|Ayam|🐔;Duck|Bebek|🦆;Horse|Kuda|🐴;Sheep|Domba|🐑;Pig|Babi|🐷',`
+2|A ___ says "meow".|cat|dog,cow,duck|Kucing mengeong "meow".
+2|A ___ says "woof".|dog|cat,bird,fish|Anjing menggonggong "woof".
+2|A ___ gives us milk.|cow|duck,fish,cat|Sapi (cow) menghasilkan susu.
+3|Which one is a farm animal?|cow|cat,dog,rabbit|Cow adalah hewan ternak (farm animal).
+3|Which animal can swim and says "quack"?|duck|cat,horse,goat|Bebek (duck) bisa berenang.
+3|It is a pet. It likes carrots. It is a ___.|rabbit|dog,cow,fish|Kelinci (rabbit) suka wortel.`),
+topic('Fruits & Vegetables','Buah: apple, banana, orange, mango. Sayur: carrot, tomato, potato, corn.','Apple|Apel|🍎;Banana|Pisang|🍌;Orange|Jeruk|🍊;Mango|Mangga|🥭;Grapes|Anggur|🍇;Watermelon|Semangka|🍉;Pineapple|Nanas|🍍;Carrot|Wortel|🥕;Tomato|Tomat|🍅;Potato|Kentang|🥔;Corn|Jagung|🌽;Cucumber|Mentimun|🥒',`
+2|A monkey likes ___. It is long and yellow.|banana|apple,carrot,corn|Pisang (banana) panjang dan kuning.
+2|Rabbits like ___. It is orange and a vegetable.|carrots|mango,apple,banana|Wortel = carrot (sayur).
+2|Which one is a fruit?|apple|carrot,potato,corn|Apple adalah buah.
+3|Which one is a vegetable?|potato|apple,mango,banana|Potato (kentang) adalah sayur.
+3|It is green outside and red inside. It is a ___.|watermelon|banana,corn,carrot|Semangka = watermelon.
+3|I want to make juice. I need an ___.|orange|potato,corn,cucumber|Jus dibuat dari buah, misalnya orange.`)
+],
+3:[
+topic('Days & Months','Hari: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. Bulan: January sampai December.','Monday|Senin;Tuesday|Selasa;Wednesday|Rabu;Thursday|Kamis;Friday|Jumat;Saturday|Sabtu;Sunday|Minggu;January|Januari;February|Februari;March|Maret;April|April;May|Mei;June|Juni;July|Juli;August|Agustus;September|September;October|Oktober;November|November;December|Desember','',{a:[ab(DY,'day')],b:[ab(MO,'month')],c:[nth,ab(DY,'day'),ab(MO,'month')]}),
+topic('Things in the Classroom','Benda di kelas: book (buku), pencil (pensil), pen (pulpen), ruler (penggaris), bag (tas), desk (meja), chair (kursi). Pola: <b>This is a pencil.</b> / <b>There are two books.</b>','Book|Buku|📖;Pencil|Pensil|✏️;Pen|Pulpen|🖊️;Ruler|Penggaris|📏;Eraser|Penghapus;Bag|Tas|🎒;Desk|Meja;Chair|Kursi|🪑;Board|Papan tulis;Teacher|Guru|🧑‍🏫;Student|Murid|🧑‍🎓;Scissors|Gunting|✂️;Notebook|Buku tulis|📓;Door|Pintu|🚪',`
+2|I write with a ___.|pencil|ruler,bag,chair|Menulis memakai pensil (pencil).
+2|I sit on a ___.|chair|pencil,board,book|Duduk di kursi (chair).
+2|I read a ___.|book|eraser,desk,bag|Membaca buku (book).
+3|I need a ___ to draw a straight line.|ruler|eraser,scissors,bag|Penggaris = ruler.
+3|"What is this?" "It is ___ eraser."|an|a,two,are|Sebelum huruf vokal pakai <b>an</b>.
+3|There ___ three books on the desk.|are|is,am,be|Jamak (three books) pakai <b>are</b>.`),
+topic('Clothes','Pakaian: shirt (kemeja), pants (celana), shoes (sepatu), socks (kaus kaki), hat (topi), dress (gaun), jacket (jaket).','Shirt|Kemeja|👕;Pants|Celana panjang|👖;Shoes|Sepatu|👟;Socks|Kaus kaki|🧦;Hat|Topi|🧢;Dress|Gaun|👗;Skirt|Rok;Jacket|Jaket|🧥;Glasses|Kacamata|👓;Scarf|Syal|🧣;Gloves|Sarung tangan|🧤;Shorts|Celana pendek|🩳',`
+2|I wear ___ on my feet.|shoes|hat,shirt,gloves|Sepatu (shoes) dipakai di kaki.
+2|I wear a ___ on my head.|hat|socks,pants,shoes|Topi (hat) dipakai di kepala.
+2|It is cold. I wear a ___.|jacket|shorts,skirt,glasses|Saat dingin pakai jaket (jacket).
+3|These are my shoes. ___ are new.|They|It,He,She|Benda jamak pakai <b>They</b>.
+3|This is a red shirt. ___ is red.|It|They,We,He|Satu benda pakai <b>It</b>.
+3|My pants ___ blue.|are|is,am,be|Pants dianggap jamak, pakai <b>are</b>.`),
+topic('Food and Drinks',"Pola: <b>I like apple.</b> (aku suka) / <b>I don't like milk.</b> (aku tidak suka). Untuk He/She: <b>likes</b> dan <b>doesn't like</b>.",'Rice|Nasi|🍚;Bread|Roti|🍞;Egg|Telur|🥚;Fish|Ikan|🐟;Noodles|Mi|🍜;Milk|Susu|🥛;Water|Air|💧;Juice|Jus|🧃;Tea|Teh|🍵;Cake|Kue|🍰;Ice cream|Es krim|🍦;Pizza|Pizza|🍕',`
+2|Aku suka kue. → I ___ cake.|like|likes,liking,am like|Untuk I pakai <b>like</b>.
+2|Aku tidak suka teh. → I ___ tea.|don't like|like,doesn't like,not like|Penolakan untuk I: <b>don't like</b>.
+2|I drink ___. It is white.|milk|rice,bread,cake|Susu (milk) berwarna putih.
+3|She ___ milk. (tidak suka)|doesn't like|don't like,not like,isn't like|Untuk She pakai <b>doesn't like</b>.
+3|"Do you like noodles?" "Yes, I ___."|do|am,like,does|Jawaban pendek: Yes, I <b>do</b>.
+3|He ___ apples. (suka)|likes|like,liking,are like|Untuk He pakai <b>likes</b>.`)
+],
+4:[
+topic('Prepositions of Place','Kata depan tempat: <b>in</b> (di dalam), <b>on</b> (di atas), <b>under</b> (di bawah), <b>beside</b> (di samping), <b>behind</b> (di belakang), <b>in front of</b> (di depan), <b>between</b> (di antara).','In|Di dalam;On|Di atas;Under|Di bawah;Beside|Di samping;Behind|Di belakang;In front of|Di depan;Between|Di antara;Next to|Di sebelah','',{a:[pp(0)],b:[pp(1)],c:[mid,frn,pp(1)]}),
+topic('My House','Ruangan: living room (ruang tamu), bedroom (kamar tidur), kitchen (dapur), bathroom (kamar mandi), garden (taman), garage (garasi).','Living room|Ruang tamu|🛋️;Bedroom|Kamar tidur|🛏️;Kitchen|Dapur|🍳;Bathroom|Kamar mandi|🚿;Garden|Taman|🌳;Garage|Garasi|🚗;Dining room|Ruang makan|🍽️;Door|Pintu|🚪;Window|Jendela|🪟;Wall|Dinding;Floor|Lantai;Roof|Atap',`
+2|I sleep in the ___.|bedroom|kitchen,garden,garage|Tidur di kamar tidur (bedroom).
+2|My mother cooks in the ___.|kitchen|bedroom,bathroom,garage|Memasak di dapur (kitchen).
+2|I take a bath in the ___.|bathroom|living room,kitchen,garden|Mandi di kamar mandi (bathroom).
+3|We watch TV in the ___.|living room|bathroom,kitchen,garage|Menonton TV di ruang tamu.
+3|The car is in the ___.|garage|bedroom,kitchen,bathroom|Mobil di garasi (garage).
+3|There ___ a sofa in the living room.|is|are,am,be|Satu benda pakai <b>is</b>.`),
+topic('Hobbies & Sports','Hobi: swimming, reading, drawing, singing. Olahraga: football, badminton, basketball. Pola: <b>I like swimming.</b> / <b>She plays football.</b>','Swimming|Berenang|🏊;Running|Berlari|🏃;Reading|Membaca|📚;Drawing|Menggambar|🎨;Singing|Menyanyi|🎤;Dancing|Menari|💃;Cooking|Memasak|🍳;Football|Sepak bola|⚽;Basketball|Bola basket|🏀;Badminton|Bulu tangkis|🏸;Cycling|Bersepeda|🚴;Fishing|Memancing|🎣',`
+2|I like ___. I swim in the pool.|swimming|reading,singing,drawing|Berenang = swimming.
+2|I play ___ with a ball and a goal.|football|badminton,reading,drawing|Sepak bola = football.
+2|He plays ___ with a racket and a shuttlecock.|badminton|football,swimming,singing|Bulu tangkis = badminton.
+3|My hobby is ___. I draw pictures.|drawing|dancing,cooking,fishing|Menggambar = drawing.
+3|She ___ football every Sunday.|plays|play,playing,is play|Untuk She pakai <b>plays</b>.
+3|"What do you like doing?" "I like ___."|swimming|swim,swims,swam|Setelah <i>like</i> pakai kata kerja -ing.`),
+topic('Daily Activities','Kegiatan harian: wake up (bangun), take a bath (mandi), brush teeth (sikat gigi), eat breakfast (sarapan), go to school (ke sekolah), go to bed (tidur).','Wake up|Bangun tidur|⏰;Take a bath|Mandi|🛁;Brush teeth|Menyikat gigi|🪥;Eat breakfast|Sarapan|🥣;Go to school|Pergi ke sekolah|🏫;Study|Belajar|📖;Eat lunch|Makan siang|🍱;Do homework|Mengerjakan PR|📝;Watch TV|Menonton TV|📺;Go to bed|Pergi tidur|🛌;Play|Bermain|🎮',`
+2|I ___ up at six o'clock.|wake|take,go,eat|Bangun tidur = wake up.
+2|I ___ a bath every morning.|take|make,do,eat|Mandi = take a bath.
+2|I ___ my teeth after breakfast.|brush|eat,take,go|Menyikat gigi = brush teeth.
+3|She ___ to school at seven.|goes|go,going,gone|Untuk She pakai <b>goes</b>.
+3|First I wake up. ___ I take a bath.|Then|Never,Yesterday,Before|<b>Then</b> = lalu (urutan kegiatan).
+3|I go to ___ at nine o'clock at night.|bed|school,bath,breakfast|Pergi tidur = go to bed.`)
+],
+5:[
+topic('Telling Time',"Jam: <b>It is seven o'clock</b> (tepat jam 7), <b>half past seven</b> (07.30), <b>a quarter past seven</b> (07.15), <b>a quarter to eight</b> (07.45).","O'clock|Tepat pukul|🕐;Half past|Setengah (lewat 30 menit)|🕧;Quarter past|Lewat 15 menit|🕒;Quarter to|Kurang 15 menit|🕘;Morning|Pagi|🌅;Afternoon|Siang atau sore|☀️;Evening|Petang|🌆;Night|Malam|🌙",`
+3|School starts at 07.00. Now it is half past six (06.30). Are you late?|No, I am not late|Yes I am late,School is over,I don't know|06.30 lebih awal dari 07.00.
+3|It is a quarter to nine. The next hour is ___ o'clock.|nine|eight,ten,seven|Kurang 15 menit menuju jam sembilan.`,{a:[tmq([0])],b:[tmq([0,30])],c:[tmq([0,15,30,45])]}),
+topic('Professions & Workplaces','Pekerjaan: teacher, doctor, nurse, farmer, pilot, cook. Tempat kerja: school, hospital, farm, airport, restaurant.','Teacher|Guru|🧑‍🏫;Doctor|Dokter|🧑‍⚕️;Nurse|Perawat;Farmer|Petani|🧑‍🌾;Police officer|Polisi|👮;Cook|Juru masak|🧑‍🍳;Pilot|Pilot|🧑‍✈️;Fisherman|Nelayan;School|Sekolah|🏫;Hospital|Rumah sakit|🏥;Farm|Sawah atau kebun|🚜;Restaurant|Restoran|🍽️;Airport|Bandara|✈️;Market|Pasar|🛒',`
+2|A teacher works in a ___.|school|hospital,farm,airport|Guru bekerja di sekolah (school).
+2|A doctor works in a ___.|hospital|school,restaurant,market|Dokter bekerja di rumah sakit (hospital).
+2|A farmer works on a ___.|farm|school,hospital,airport|Petani bekerja di sawah atau kebun (farm).
+3|She helps sick people in the hospital. She is a ___.|nurse|pilot,cook,farmer|Membantu orang sakit = nurse.
+3|"What does your father do?" "He ___ a farmer."|is|are,am,do|Setelah He pakai <b>is</b>.
+3|Mr. Budi is a pilot. He works at the airport. He flies a plane. Where does Mr. Budi work?|At the airport|At school,At the hospital,At the farm|Teks: "He works at the airport."
+3|Mr. Budi is a pilot. He works at the airport. He flies a plane. What does he do?|He flies a plane|He cooks food,He teaches students,He drives a bus|Teks: "He flies a plane."`),
+topic('Public Places & Directions','Arah: <b>Turn left</b> (belok kiri), <b>Turn right</b> (belok kanan), <b>Go straight</b> (jalan lurus), <b>Stop</b> (berhenti). Tempat umum: bank, post office, library, mosque, park.','Turn left|Belok kiri|⬅️;Turn right|Belok kanan|➡️;Go straight|Jalan lurus|⬆️;Stop|Berhenti|🛑;Bank|Bank|🏦;Post office|Kantor pos|📮;Library|Perpustakaan|📚;Mosque|Masjid|🕌;Park|Taman|🏞️;Supermarket|Supermarket|🏬;Bus stop|Halte|🚏;Traffic light|Lampu lalu lintas|🚦;Bridge|Jembatan|🌉',`
+2|Go ___ and you will see the bank.|straight|turn,stop,up|Jalan lurus = go straight.
+2|The bank is on the left. ___ left.|Turn|Stop,Sit,Eat|Belok kiri = Turn left.
+2|"Where is the library?" "It is ___ the park."|next to|turn,eat,stop|Next to = di sebelah.
+3|Go straight. Turn right at the traffic light. The post office is ___ your left.|on|in,under,for|Gunakan <b>on your left</b>.
+3|Which sentence gives a direction?|Turn left at the bank.|I like the bank.,The bank is big.,My father works.|Arah memakai kata kerja perintah: Turn, Go, Stop.
+3|The traffic light is red. We must ___.|stop|go,run,jump|Lampu merah = stop (berhenti).`),
+topic('Adjectives','Kata sifat: tall (tinggi), short (pendek), big (besar), small (kecil), happy (senang), sad (sedih). Lawan kata: tall ↔ short, big ↔ small, happy ↔ sad.','Tall|Tinggi|🦒;Short|Pendek;Big|Besar|🐘;Small|Kecil|🐜;Happy|Senang|😊;Sad|Sedih|😢;Fast|Cepat|🐆;Slow|Lambat|🐢;Hot|Panas|🔥;Cold|Dingin|🧊;Old|Tua|👴;Young|Muda|👶;New|Baru;Clean|Bersih|✨;Dirty|Kotor;Beautiful|Cantik|🌸',`
+3|Rina is tall and happy. Budi is short and sad. Who is happy?|Rina|Budi,Both,No one|Teks: "Rina is tall and happy."
+3|Rina is tall and happy. Budi is short and sad. Who is short?|Budi|Rina,Both,No one|Teks: "Budi is short and sad."
+3|A cheetah is fast. A turtle is ___.|slow|fast,tall,hot|Lawan fast adalah slow.
+3|She has a ___ dress. (baru)|new|old,dirty,sad|Baru = new.`,{a:[op],b:[op],c:[op]})
+],
+6:[
+topic('Feelings & Emotions','Perasaan: happy (senang), sad (sedih), angry (marah), scared (takut), tired (lelah), hungry (lapar). Pola: <b>I am happy.</b> / <b>She is sad.</b>','Happy|Senang|😊;Sad|Sedih|😢;Angry|Marah|😠;Scared|Takut|😨;Tired|Lelah|😴;Hungry|Lapar|🤤;Thirsty|Haus|🥤;Sick|Sakit|🤒;Surprised|Terkejut|😲;Excited|Antusias|🤩;Bored|Bosan|🥱;Proud|Bangga|😌;Shy|Malu|😳',`
+2|I got a gift. I feel ___.|happy|angry,sick,bored|Dapat hadiah → happy.
+2|I lost my toy. I feel ___.|sad|happy,excited,proud|Kehilangan mainan → sad.
+2|I did not eat all day. I am ___.|hungry|thirsty,shy,proud|Belum makan → hungry.
+3|A: How are you? B: I'm ___. I got 100 on my test.|proud|sick,scared,bored|Nilai 100 → proud (bangga).
+3|A: Why are you crying? B: My cat is sick. B feels ___.|sad|happy,excited,proud|Menangis karena kucing sakit → sad.
+3|Which sentence is correct?|She is angry.|She angry is.,She are angry.,She am angry.|Susunan benar: subjek + is + kata sifat.`),
+topic('Weather & Seasons','Cuaca: sunny (cerah), rainy (hujan), cloudy (berawan), windy (berangin). Musim: dry season (kemarau), rainy season (hujan), summer, winter. Pola: <b>It is sunny today.</b>','Sunny|Cerah|☀️;Rainy|Hujan|🌧️;Cloudy|Berawan|☁️;Windy|Berangin|💨;Stormy|Badai|⛈️;Snowy|Bersalju|❄️;Hot|Panas|🥵;Cold|Dingin|🥶;Rainbow|Pelangi|🌈;Summer|Musim panas|🏖️;Winter|Musim dingin|⛄;Spring|Musim semi|🌷;Autumn|Musim gugur|🍂;Dry season|Musim kemarau|🏜️;Rainy season|Musim hujan|☔',`
+2|It is raining. I need an ___.|umbrella|hat,fan,scarf|Hujan → payung (umbrella).
+2|It is ___. I can see the sun.|sunny|rainy,snowy,stormy|Ada matahari → sunny.
+2|In Indonesia there are two seasons: dry season and ___ season.|rainy|snowy,summer,winter|Indonesia punya musim kemarau dan hujan.
+3|Snow falls in ___.|winter|summer,rainy season,dry season|Salju turun saat winter.
+3|"What is the weather like today?" "___."|It is cloudy.|I am cloudy.,It cloud.,Cloudy it is.|Pola: It is + kata sifat cuaca.
+3|Flowers bloom in ___.|spring|autumn,winter,summer|Bunga mekar saat spring.`),
+topic('Simple Past Tense','Simple Past untuk kejadian yang sudah lewat. Kata kerja beraturan + <b>-ed</b>: play → played. Tidak beraturan: go → went, eat → ate. Penanda: yesterday, last week, ago. Negatif/tanya: <b>didn\'t</b> / <b>Did</b> + kata kerja dasar.','Yesterday|Kemarin|📆;Last week|Minggu lalu|🗓️;Last night|Tadi malam|🌙;Ago|Yang lalu;Holiday|Liburan|🏖️;Went|Pergi (lampau);Played|Bermain (lampau);Visited|Mengunjungi (lampau)',`
+3|Last holiday, Rina went to Bali. She visited a beach and swam. Where did Rina go?|Bali|Jakarta,Bandung,Medan|Teks: "Rina went to Bali."
+3|Last holiday, Rina went to Bali. She visited a beach and swam. What did she do at the beach?|She swam|She cooked,She slept,She studied|Teks: "She visited a beach and swam."
+3|Which sentence is in the past?|I played football yesterday.|I play football every day.,I will play football tomorrow.,I am playing football now.|Yesterday → bentuk lampau (played).`,{a:[pf],b:[gp],c:[ng,dq,gp]}),
+topic('Simple Future Tense','Simple Future untuk rencana dan cita-cita: <b>will</b> + kata kerja dasar. Contoh: <b>I will visit my grandmother tomorrow.</b> / <b>I want to be a doctor.</b> Negatif: <b>won\'t</b>.','Tomorrow|Besok|📅;Next week|Minggu depan|🗓️;Next year|Tahun depan|🎆;Future|Masa depan|🔮;Dream|Cita-cita|💭;Plan|Rencana|📝;Doctor|Dokter|🧑‍⚕️;Teacher|Guru|🧑‍🏫;Pilot|Pilot|🧑‍✈️;Astronaut|Astronaut|🧑‍🚀;Scientist|Ilmuwan|🧑‍🔬;Engineer|Insinyur|👷',`
+1|"What do you want to be?" "I ___ be a pilot."|want to|wants,wanted,am want|Cita-cita: <b>I want to be</b> ...
+3|Budi wants to be a doctor. He will study hard. What will Budi do?|He will study hard|He studied hard,He studies hard,He is study hard|Teks: "He will study hard."
+3|My dream: "I ___ be an astronaut."|will|am,did,was|Rencana masa depan → <b>will</b>.
+3|Which sentence is about the future?|I will visit my grandma tomorrow.|I visited my grandma yesterday.,I visit my grandma every day.,My grandma is old.|Tomorrow + will = masa depan.`,{a:[fw],b:[ff],c:[fn,ff]})
+]
+};
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* ================= FIREBASE: sinkronisasi, presence, guru ================= */
+const FB_CONFIG={apiKey:"AIzaSyColgOqIe8x85GhGPf-XfqliYJRJA8IR2E",authDomain:"belajar-12213.firebaseapp.com",databaseURL:"https://belajar-12213-default-rtdb.firebaseio.com",projectId:"belajar-12213",storageBucket:"belajar-12213.firebasestorage.app",messagingSenderId:"895600575663",appId:"1:895600575663:web:8da1be8ff62a622998c05a"},
+APP='englishexplorer',GURU_PIN='guru6';
+let db=null,off=0,hb=null,pref=null,conn=null,sync='',stm=null;
+let authP=Promise.resolve();
+try{if(window.firebase&&FB_CONFIG.apiKey!='ISI_API_KEY'){firebase.initializeApp(FB_CONFIG);db=firebase.database();authP.then(()=>db.ref('.info/serverTimeOffset').on('value',s=>off=s.val()||0))}}catch(e){db=null;window.fbErr=e.message}
+const arr=x=>Array.isArray(x)?x:x&&typeof x=='object'?Object.values(x):[],
+slug=x=>(''+x).toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')||'x',
+ukey=(s,k,n)=>[slug(s),slug(k),slug(n)].join('__'),
+norm=d=>{const p={};Object.entries(d.p||{}).forEach(([k,v])=>p[k.replace(/_/g,'.')]=v);return{name:d.name,kls:d.kls,skl:d.skl,xp:d.xp||0,tot:d.tot||0,ok:d.ok||0,perf:d.perf||0,days:arr(d.days),p,ac:d.ac||{},hist:arr(d.hist),wr:arr(d.wr)}},
+pack=()=>{const p={};Object.entries(S.p).forEach(([k,v])=>p[k.replace(/\./g,'_')]=v);return JSON.parse(JSON.stringify({name:S.name,kls:S.kls,skl:S.skl,xp:S.xp,tot:S.tot,ok:S.ok,perf:S.perf||0,days:S.days,p,ac:S.ac,hist:S.hist,wr:S.wr,upd:Date.now()}))},
+skey=()=>ukey(S.skl,S.kls,S.name),
+synT=()=>db?(sync=='ok'?'☁️ Tersimpan':sync=='err'?'⚠️ Gagal sinkron':'☁️ Menyinkron…'):'📴 Mode offline',
+badge=()=>{const e=$('#syn');if(e)e.textContent=synT()},
+push=()=>{if(!db||!S)return;const k=skey(),d=pack();sync='';badge();authP.then(()=>Promise.all([db.ref(APP+'/detail/'+k).set(d),db.ref(APP+'/ringkas/'+k).set({name:d.name,kls:d.kls,skl:d.skl,xp:d.xp,tot:d.tot,ok:d.ok,upd:d.upd})])).then(()=>{sync='ok';badge()}).catch(()=>{sync='err';badge()})},
+sv=()=>{try{localStorage.setItem('ee1',JSON.stringify(S))}catch(e){}if(db&&S){clearTimeout(stm);stm=setTimeout(push,600)}},
+locOf=key=>{try{const l=JSON.parse(localStorage.getItem('ee1'));return l&&ukey(l.skl,l.kls,l.name)==key?l:null}catch(e){return null}},
+hist=()=>{try{return JSON.parse(localStorage.getItem('eeh'))||[]}catch(e){return[]}},
+addH=(n,k,s)=>{const key=ukey(s,k,n),h=hist().filter(x=>ukey(x.s,x.k,x.n)!=key);h.unshift({n,k,s});try{localStorage.setItem('eeh',JSON.stringify(h.slice(0,8)))}catch(e){}},
+chips=()=>{const h=hist();return h.length?`<div class=mu style="margin-top:10px">Lanjutkan sebagai:</div><div class=chips>${h.map((x,i)=>`<span class=chip title="${esc(x.s)}"><button onclick="quick(${i})">👤 ${esc(x.n)} · ${esc(x.k)}</button><b onclick="delH(${i})" aria-label="Hapus">×</b></span>`).join('')}</div>`:''};
+function quick(i){const h=hist()[i];if(h)login(h.n,h.k,h.s)}
+function delH(i){const h=hist();h.splice(i,1);try{localStorage.setItem('eeh',JSON.stringify(h))}catch(e){}render()}
+const blank=(n,k,s)=>({name:n,kls:k,skl:s,xp:0,p:{},days:[],tot:0,ok:0,ac:{},hist:[],wr:[]});
+function login(n,k,s){if(n==null){n=$('#nm').value.trim();k=$('#kl').value;const v=$('#sk').value;s=v=='_'?$('#sx').value.trim():v}if(!n||!s)return;const key=ukey(s,k,n),fin=d=>{S=d?norm(d):blank(n,k,s);S.name=n;S.kls=k;S.skl=s;addH(n,k,s);sv();pres();go('home')};
+if(!db)return fin(locOf(key));
+$('#app').innerHTML='<div class=card style="text-align:center"><div class=big>⏳</div>Memuat progres…</div>';
+authP.then(()=>db.ref(APP+'/detail/'+key).get()).then(sn=>{const r=sn.exists()?sn.val():null,l=locOf(key);fin(r&&l?((l.tot||0)>(r.tot||0)?l:r):r||l)}).catch(()=>fin(locOf(key)))}
+function resume(){if(!db||!S)return;pres();authP.then(()=>db.ref(APP+'/detail/'+skey()).get()).then(sn=>{if(sn.exists()){const r=sn.val();if((r.tot||0)>S.tot){S=norm(r);try{localStorage.setItem('ee1',JSON.stringify(S))}catch(e){}if(V=='home'||V=='prog')render()}}push()}).catch(()=>{})}
+function gon(){if(!pref||!S)return;const b={name:S.name,kls:S.kls,skl:S.skl},T0=firebase.database.ServerValue.TIMESTAMP;pref.onDisconnect().set({...b,isOnline:false,last_changed:T0}).then(()=>pref.set({...b,isOnline:true,last_changed:T0,page:V}))}
+function pres(){if(!db||!S)return;clearInterval(hb);authP.then(()=>{pref=db.ref(APP+'/presence/'+skey());if(!conn){conn=db.ref('.info/connected');conn.on('value',s=>{if(s.val()===true)gon()})}else gon()});hb=setInterval(()=>{if(pref&&S)pref.update({last_changed:firebase.database.ServerValue.TIMESTAMP,page:V,isOnline:true})},30000)}
+function unpres(){clearInterval(hb);if(pref){const r=pref;pref=null;r.onDisconnect().cancel();r.update({isOnline:false,last_changed:firebase.database.ServerValue.TIMESTAMP})}}
+const wrong=q=>{const t=q.q.slice(0,300);const w=S.wr.find(x=>x.q==t&&x.g==P.g);if(w){w.c++;w.t=Date.now()}else{S.wr.push({q:t,a:q.a,e:(q.e||'').slice(0,160),g:P.g,i:P.i??-1,L:P.L,gr:q.g?1:0,c:1,t:Date.now()});if(S.wr.length>80){S.wr.sort((a,b)=>b.c-a.c||b.t-a.t);S.wr.length=60}}},
+stk=days=>{let n=0,d=new Date;while(days.includes(day(d))){n++;d.setDate(d.getDate()-1)}return n},
+dt=t=>t?new Date(t).toLocaleString('id-ID',{dateStyle:'short',timeStyle:'short'}):'–',
+sbn=(g,i)=>i>=0&&T[g][i]?T[g][i].n:'Ulangan campuran',
+hv=d=>{const h=d.hist.slice(-12).reverse(),w=[...d.wr].sort((a,b)=>b.c-a.c||b.t-a.t).slice(0,10);return`<h2>🕘 Riwayat ulangan</h2>${h.length?`<div class="card tw"><table><tr><td><b>Waktu<td><b>Materi<td><b>Level<td><b>Skor${h.map(x=>`<tr><td>${dt(x.t)}<td>Kelas ${x.g} · ${esc(sbn(x.g,x.i))}<td>${LN[x.L]||''}<td><b>${x.sc}%</b> (${Math.round(x.sc*x.n/100)}/${x.n})`).join('')}</table></div>`:'<div class=card>Belum ada ulangan selesai.</div>'}<h2>❗ Soal yang pernah salah</h2>${w.length?w.map(x=>`<div class=card><div>${esc(x.q)}${x.gr?' <span class=mu>(soal bergambar)</span>':''}</div><div class=mu>Kelas ${x.g} · ${esc(sbn(x.g,x.i))} · ${LN[x.L]||''} · salah ${x.c}×</div><div>✅ Jawaban benar: <b>${esc(x.a)}</b></div>${x.e?`<div class=mu>💡 ${esc(x.e)}</div>`:''}</div>`).join(''):'<div class=card>Belum ada soal salah. Hebat! 🎉</div>'}`};
+
+let S=null,V='home',G=1,P=null,mem=null;
+try{S=norm(JSON.parse(localStorage.getItem('ee1')))}catch(e){S=null}
+const lvl=()=>Math.floor(S.xp/100)+1,day=d=>d.toISOString().slice(0,10);
+const streak=()=>{let n=0,d=new Date;while(S.days.includes(day(d))){n++;d.setDate(d.getDate()-1)}return n};
+const bar=v=>`<div class=bar><i style="width:${v}%"></i></div>`;
+const gdone=g=>T[g].filter((_,i)=>[1,2,3].some(L=>S.p[g+'.'+i+'.'+L]!=null)).length;
+function go(v,g){V=v;if(g)G=g;render();scrollTo(0,0)}
+
+function skc(){$('#sx').style.display=$('#sk').value=='_'?'block':'none'}
+function out(){unpres();S=null;try{localStorage.removeItem('ee1')}catch(e){}go('home')}
+function ans(j){if(P.a!=null)return;P.a=j;const q=P.qs[P.k],ok=q.o[j]==q.a,ak=P.g+'_'+(P.i??'x')+'_'+P.L;S.tot++;const c=S.ac[ak]||(S.ac[ak]=[0,0]);c[1]++;if(ok){c[0]++;P.ok++;S.ok++;S.xp+=10}else wrong(q);sv();render()}
+const W={
+login:()=>`<div class=card style="max-width:480px;margin:30px auto;text-align:center"><div class=big>🧭🦉</div><h1>English Explorer</h1><p class=mu>Petualangan belajar Bahasa Inggris SD: 6 kelas, 24 topik, 3 level, 25 soal tiap level. Isi datamu untuk mulai atau lanjutkan.</p>${chips()}${db?'':'<p class=mu>📴 Mode offline: progres hanya tersimpan di perangkat ini.</p>'}<label class=lbl for=nm>Nama</label><input id=nm class=inp placeholder="Nama kamu" onkeydown="event.key=='Enter'&&login()"><label class=lbl for=kl>Kelas</label><select id=kl class=inp>${KL.map(k=>`<option value=${k}>Kelas ${k}</option>`).join('')}</select><label class=lbl for=sk>Sekolah</label><select id=sk class=inp onchange=skc()>${SK2.map(s=>`<option>${s}</option>`).join('')}<option value=_>Lainnya (tulis sendiri)…</option></select><input id=sx class=inp placeholder="Tulis nama sekolahmu" style="display:none" onkeydown="event.key=='Enter'&&login()"><button class=btn onclick=login()>Mulai belajar 🚀</button><p><button class="btn s" onclick="go('guru')">👩‍🏫 Masuk sebagai guru</button></p></div><div class=card style="max-width:480px;margin:20px auto"><h2 style="margin-top:0">🏆 Papan Peringkat</h2><div id=lb></div></div>${lbSub()}`,
+home:()=>{const t=S.tot,a=t?Math.round(S.ok/t*100):0,c=g=>`<div class="card bab b${g}" style="cursor:pointer" tabindex=0 onclick="go('kelas',${g})" onkeydown="event.key=='Enter'&&go('kelas',${g})"><div class=big>${CI[g-1]} Kelas ${g}</div><b>${CH[g-1]}</b><div class=mu>${gdone(g)} dari ${T[g].length} topik dicoba</div>${bar(gdone(g)/T[g].length*100)}</div>`;return`<div class=hero><div><h1>Hello, ${esc(S.name)}! 👋</h1><p>Kelas ${esc(S.kls||'1')} · ${esc(S.skl||'SD')}<br>Pilih kelas, baca materi, dengarkan kata dengan 🔊, lalu kerjakan 3 level latihan.</p></div><div class=lv>Level ${lvl()}</div></div><div class=grid><div class=card><div class=big>🔥 ${streak()}</div><div class=mu>hari beruntun</div></div><div class=card><div class=big>${t}</div><div class=mu>soal dikerjakan</div></div><div class=card><div class=big>${a}%</div><div class=mu>akurasi</div></div><div class=card><div class=big>${S.xp}</div><div class=mu>XP</div></div></div>${HM.map(x=>typeof x=='number'?c(x):x[0]=='sem'?`<h2 class=sem>${x[1]}</h2>`:`<div class=mark>${x[1]}</div>`).join('')}`},
+play:()=>{const q=P.qs[P.k],a=P.a,done=a!=null,ok=done&&q.o[a]==q.a;return`<div class="row sp"><b>Kelas ${P.g} · ${P.i==null?'Ulangan campuran':T[P.g][P.i].n+' · '+LN[P.L]}</b><span class=mu>Soal ${P.k+1} dari ${P.qs.length}</span></div>${bar((P.k+(done?1:0))/P.qs.length*100)}<div class=card>${q.g?`<div class=gfx>${q.g}</div>`:''}<div class=q>${q.q}</div>${q.o.map((o,j)=>`<button class="opt ${done?(o==q.a?'ok':j==a?'no':''):''}" onclick="ans(${j})">${o}</button>`).join('')}${done?`<div class="fb ${ok?'ok':'no'}">${ok?'🎉 <b>Benar!</b> +10 XP':'❌ <b>Belum tepat.</b> Jawaban benar: <b>'+q.a+'</b>'}${q.e?'<br>💡 '+q.e:''}</div>`:''}</div>${done?`<button class=btn onclick=next()>${P.k==P.qs.length-1?'Lihat hasil':'Soal berikutnya'} →</button>`:''}`},
+prog:()=>{const A=[['🎯','Langkah pertama',S.tot>0],['🔥','3 hari beruntun',streak()>=3],['💯','Nilai sempurna',!!S.perf],['⭐','500 XP',S.xp>=500],['🎓','Semua topik satu kelas dicoba',GS.some(g=>gdone(g)==T[g].length)]];return`<h1>📊 Progress</h1>${GS.map(g=>`<div class=card><div class="row sp"><b>Kelas ${g}: ${CH[g-1]}</b><span class=mu>${gdone(g)}/${T[g].length} topik</span></div>${bar(gdone(g)/T[g].length*100)}<div class=mu>${T[g].map((t,i)=>[1,2,3].some(L=>S.p[g+'.'+i+'.'+L]!=null)?t.n+': '+[1,2,3].map(L=>S.p[g+'.'+i+'.'+L]??'–').join('/')+'%':'').filter(Boolean).join(' · ')||'Belum ada latihan.'}</div></div>`).join('')}${hv(S)}<h2>Pencapaian</h2><div class=grid>${A.map(a=>`<div class=card style="${a[2]?'':'opacity:.45'}"><div class=big>${a[0]}</div><b>${a[1]}</b></div>`).join('')}</div>`}};
+function render(){const lg='<div class=lg>English<i>Explorer</i></div>';if(!S&&V!='guru'&&V!='gdet')V='login';$('#sb').innerHTML=lg+(S?[['home','🏠 Beranda'],['prog','📊 Progress'],['guru','👩‍🏫 Guru'],['val','🧪 Validator']].map(x=>`<button class="${V==x[0]?'on':''}" onclick="go('${x[0]}')">${x[1]}</button>`).join('')+'<button onclick=out()>🚪 Keluar</button><div class=mu id=syn>'+synT()+'</div>':(V=='guru'||V=='gdet'?'<button onclick="go(\'login\')">🏠 Halaman siswa</button>':''));$('#app').innerHTML=W[V]()}
+const LN=['','🌱 Level 1 Easy','🌿 Level 2 Medium','🌳 Level 3 Challenge'];
+const mk=(g,i,L)=>{const pool=i==null?T[g].map((_,j)=>j):[i],qs=[],seen=new Set;for(let n=0;n<2500&&qs.length<25;n++){LV=i==null?pick([1,2,3]):L;const q=T[g][pick(pool)].g(),k=q.q+q.g;if(!seen.has(k)){seen.add(k);qs.push(q)}}return qs};
+function start(g,i,L){P={g,i,L,qs:mk(g,i,L),k:0,ok:0,a:null};go('play')}
+function next(){P.k++;if(P.k<P.qs.length){P.a=null;return go('play')}const sc=Math.round(P.ok/P.qs.length*100);P.sc=sc;S.hist.push({g:P.g,i:P.i??-1,L:P.L,sc,n:P.qs.length,t:Date.now()});if(S.hist.length>60)S.hist.shift();S.xp+=sc==100?50:20;if(P.i!=null){const key=P.g+'.'+P.i+'.'+P.L;S.p[key]=Math.max(S.p[key]||0,sc)}const d=day(new Date);if(!S.days.includes(d))S.days.push(d);if(sc==100)S.perf=1;sv();go('res')}
+W.kelas=()=>`<button class="btn s" onclick="go('home')">← Semua kelas</button><h2>Kelas ${G}: ${CH[G-1]}</h2>`+T[G].map((t,i)=>{LV=1;const ex=t.g();return`<div class=card><b>${T[G].length>1?'abcdef'[i]+'. ':''}${t.n}</b><details><summary>📖 Baca materi</summary><div>${t.m}</div><div class=ex><b>Contoh:</b> ${ex.q}${ex.g?`<div class=gfx>${ex.g}</div>`:''}<br>Jawab: <b>${ex.a}</b>. ${ex.e}</div></details><div class=row>${[1,2,3].map(L=>{const b=S.p[G+'.'+i+'.'+L];return`<button class="btn lvb l${L}" onclick="start(${G},${i},${L})">${LN[L]}<small>${b!=null?'⭐'.repeat(b>=90?3:b>=70?2:b>=40?1:0)+' '+b+'%':'25 soal'}</small></button>`}).join('')}</div></div>`}).join('')+`<button class="btn y" onclick="start(${G},null,2)">🎯 Ulangan campuran (25 soal)</button>`;
+W.res=()=>`<div class="card" style="text-align:center"><div class=big style="font-size:3rem">${P.sc>=90?'🏆':P.sc>=70?'😄':'💪'}</div><h1>${P.sc>=90?'Luar biasa!':P.sc>=70?'Hebat!':'Ayo coba lagi!'}</h1><div class=big style="font-size:3.2rem">${P.sc}</div><div style="font-size:2rem">${'⭐'.repeat(P.sc>=90?3:P.sc>=70?2:P.sc>=40?1:0)}</div>${bar(P.sc)}<p>Benar <b>${P.ok}</b> dari <b>${P.qs.length}</b> soal.</p></div><div class=row><button class=btn onclick="start(${P.g},${P.i==null?'null':P.i},${P.L})">🔄 Ulangi</button>${P.i!=null&&P.L<3?`<button class="btn y" onclick="start(${P.g},${P.i},${P.L+1})">Level berikutnya ➜</button>`:''}<button class="btn s" onclick="go('kelas',${P.g})">Pilih materi lain</button></div>`;
+W.val=()=>{let tot=0,bad=[];for(let g=1;g<=6;g++)T[g].forEach((t,i)=>[1,2,3].forEach(L=>{const qs=mk(g,i,L);tot+=qs.length;if(qs.length<25)bad.push(`B${g} ${t.n} L${L}: hanya ${qs.length} soal unik`);qs.forEach((q,j)=>{if(!q.o.includes(q.a)||new Set(q.o).size!=q.o.length||q.o.length<3)bad.push(`B${g} ${t.n} L${L} #${j+1}: opsi bermasalah`)})}));return`<h1>🧪 Validator Soal</h1><div class=card><div class=big>${tot} soal dibuat</div><p>${bad.length?'⚠️ '+bad.length+' temuan':'✅ Semua soal lolos'}</p><p class=mu>Cek: 25 soal unik per level, jawaban benar ada di opsi, opsi tidak ganda dan minimal 3.</p>${bad.slice(0,40).map(b=>`<div class=mu>⚠️ ${b}</div>`).join('')}</div>`};
+
+let GD={st:{},pr:{}},GF={skl:'',kls:'',q:'',d:null},GOK=false,gsub=false;
+const isOn=p=>!!p&&p.isOnline===true&&(Date.now()+off-(p.last_changed||0))<90000;
+function gSub(){if(!db||gsub)return;gsub=true;authP.then(()=>{db.ref(APP+'/ringkas').on('value',s=>{GD.st=s.val()||{};gUp()});db.ref(APP+'/presence').on('value',s=>{GD.pr=s.val()||{};gUp()})});setInterval(gUp,15000)}
+function gUp(){if(V=='guru'&&GOK)gTab();if(V=='gdet'){const e=$('#gds');if(e)e.innerHTML=isOn(GD.pr[GF.d])?'🟢 Online':'⚪ Offline · terakhir '+dt((GD.pr[GF.d]||{}).last_changed)}}
+function gOpt(id,vals,lbl,cur){const e=$(id);if(!e)return;e.innerHTML=`<option value="">${lbl}</option>`+vals.map(v=>`<option${v==cur?' selected':''}>${esc(v)}</option>`).join('')}
+function gTab(){const ks=Object.keys(GD.st),sv2=x=>[...new Set(ks.map(k=>GD.st[k][x]).filter(Boolean))].sort();gOpt('#gsk',sv2('skl'),'Semua sekolah',GF.skl);gOpt('#gkl',sv2('kls'),'Semua kelas',GF.kls);const q=GF.q.toLowerCase(),rows=ks.map(k=>({k,d:GD.st[k],o:isOn(GD.pr[k]),lc:(GD.pr[k]||{}).last_changed||0})).filter(r=>(!GF.skl||r.d.skl==GF.skl)&&(!GF.kls||r.d.kls==GF.kls)&&(!q||(r.d.name||'').toLowerCase().includes(q))).sort((a,b)=>b.o-a.o||(a.d.name||'').localeCompare(b.d.name||''));
+$('#gsm').innerHTML=`🟢 <b>${rows.filter(r=>r.o).length}</b> online · ${rows.length} siswa tampil dari ${ks.length}`;
+$('#gt').innerHTML=rows.map(r=>{const d=r.d,a=d.tot?Math.round(d.ok/d.tot*100):0;return`<tr><td>${r.o?'🟢 Online':'⚪ Offline'}<td><b>${esc(d.name)}</b><td>${esc(d.kls)}<td>${esc(d.skl)}<td>${d.xp||0}<td>${d.tot||0}<td>${a}%<td>${r.o?'sekarang':dt(r.lc||d.upd)}<td><button class="btn s" onclick="gDet('${r.k}')">Detail</button>`}).join('')||'<tr><td colspan=9>Belum ada data siswa.'}
+function gDet(k){GF.d=k;GD.dt=0;go('gdet');authP.then(()=>db.ref(APP+'/detail/'+k).get()).then(sn=>{GD.dt=sn.val();if(V=='gdet')render()}).catch(()=>{GD.dt=null;if(V=='gdet')render()})}
+function gpin(){if($('#gp').value==GURU_PIN){GOK=true;render()}else $('#gm').textContent='PIN salah.'}
+W.guru=()=>{if(!GOK)return`<div class=card style="max-width:400px;margin:30px auto;text-align:center"><div class=big>👩‍🏫</div><h1>Dashboard Guru</h1><input id=gp type=password class=inp placeholder="PIN guru" onkeydown="event.key=='Enter'&&gpin()"><button class=btn onclick=gpin()>Masuk</button><p class=mu id=gm></p></div>`;if(!db)return`<h1>👩‍🏫 Dashboard Guru</h1><div class=card>${window.firebase?'Firebase gagal dimulai: <code>'+esc(window.fbErr||'tidak diketahui')+'</code>':'Library Firebase tidak termuat. Penyebab umum: tidak ada internet, atau halaman dibuka di pratinjau yang memblokir gstatic.com. Buka file lewat browser biasa atau hosting (mis. GitHub Pages).'}</div>`;gSub();setTimeout(gTab,0);return`<h1>👩‍🏫 Dashboard Guru</h1><div class=card><div class=row style="flex-wrap:wrap;gap:8px"><select id=gsk class=inp onchange="GF.skl=this.value;gTab()"></select><select id=gkl class=inp onchange="GF.kls=this.value;gTab()"></select><input class=inp placeholder="🔍 Cari nama siswa" value="${esc(GF.q)}" oninput="GF.q=this.value;gTab()"></div><p class=mu id=gsm></p></div><div class="card tw"><table><tr><td><b>Status<td><b>Nama<td><b>Kelas<td><b>Sekolah<td><b>XP<td><b>Soal<td><b>Akurasi<td><b>Terakhir aktif<td><b>Aksi<tbody id=gt></tbody></table></div>`};
+W.gdet=()=>{const raw=GD.dt;const back=`<button class="btn s" onclick="go('guru')">← Kembali ke daftar</button>`;if(raw===0)return back+'<div class=card>⏳ Memuat detail…</div>';if(!raw)return back+'<div class=card>Data siswa tidak ditemukan.</div>';const d=norm(raw),pc=(o,t)=>t?Math.round(o/t*100):null,col=x=>x==null?'':x<60?'color:#d62828;font-weight:800':'color:#1b8a4b;font-weight:800';
+const babs=GS.map(g=>{let o=0,t=0;Object.entries(d.ac).forEach(([k,v])=>{if(k.split('_')[0]==g){o+=v[0];t+=v[1]}});return[g,o,t]}),weak=[];
+const rows=GS.flatMap(g=>T[g].map((t,i)=>{const c=[1,2,3].map(L=>{const v=d.ac[g+'_'+i+'_'+L];if(!v)return'<td>–';const x=pc(v[0],v[1]);if(v[1]>=5)weak.push([x,`Kelas ${g} · ${t.n} (L${L}) ${x}%`]);return`<td style="${col(x)}">${x}% <span class=mu>(${v[0]}/${v[1]})</span>`}).join('');return`<tr><td>B${g} · ${esc(t.n)}${c}`}));
+return back+`<h1>👤 ${esc(d.name)}</h1><p class=mu>Kelas ${esc(d.kls)} · ${esc(d.skl)} · <span id=gds>${isOn(GD.pr[GF.d])?'🟢 Online':'⚪ Offline · terakhir '+dt((GD.pr[GF.d]||{}).last_changed)}</span></p><div class=grid><div class=card><div class=big>⭐ ${d.xp}</div><div class=mu>XP</div></div><div class=card><div class=big>🔥 ${stk(d.days)}</div><div class=mu>hari beruntun</div></div><div class=card><div class=big>${d.tot}</div><div class=mu>soal dikerjakan</div></div><div class=card><div class=big>${d.tot?Math.round(d.ok/d.tot*100):0}%</div><div class=mu>akurasi</div></div></div>
+<h2>📊 Akurasi per kelas</h2>${babs.map(b=>{const x=pc(b[1],b[2]);return`<div class=card><div class="row sp"><b>Kelas ${b[0]}: ${CH[b[0]-1]}</b><span style="${col(x)}">${x==null?'belum ada':x+'% ('+b[1]+'/'+b[2]+')'}</span></div>${bar(x||0)}</div>`}).join('')}
+<h2>🎯 Akurasi per topik & level</h2><div class="card tw"><table><tr><td><b>Materi<td><b>L1<td><b>L2<td><b>L3${rows.join('')}</table></div>
+<h2>⚠️ Perlu bimbingan</h2><div class=card>${weak.sort((a,b)=>a[0]-b[0]).slice(0,5).map(x=>x[1]).join('<br>')||'Belum cukup data (minimal 5 soal per level).'}</div>${hv(d)}`};
+
+let LB=[],lbs=false;
+function lbDraw(){const e=$('#lb');if(!e)return;const m=['🥇','🥈','🥉'];e.innerHTML=db?(LB.length?LB.map((x,i)=>`<div class="row sp" style="padding:6px 0;border-bottom:1px dashed #f0c14b"><span>${m[i]||'<b>'+(i+1)+'.</b>'} <b>${esc(x.name)}</b> <span class=mu>${esc(x.kls)} · ${esc(x.skl)}</span></span><b>${x.xp} XP</b></div>`).join(''):'<p class=mu>Belum ada peringkat. Jadilah yang pertama!</p>'):'<p class=mu>Aktifkan Firebase untuk melihat peringkat.</p>'}
+function lbSub(){if(db&&!lbs){lbs=true;authP.then(()=>db.ref(APP+'/ringkas').orderByChild('xp').limitToLast(10).on('value',sn=>{const a=[];sn.forEach(c=>{a.push(c.val())});LB=a.reverse();lbDraw()},()=>{LB=[];lbDraw()}))}setTimeout(lbDraw,0);return''}
+if(S)resume();
+render();
+</script></body></html>
