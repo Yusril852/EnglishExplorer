@@ -463,5 +463,9 @@ function lbSub(){if(db&&!lbs){lbs=true;authP.then(()=>db.ref(APP+'/ringkas').ord
 addEventListener('pagehide',()=>{if(db&&S){clearTimeout(stm);push()}});document.addEventListener('visibilitychange',()=>{if(document.hidden&&db&&S){clearTimeout(stm);push()}});
 if(S)resume();
 render();
+<<<<<<< HEAD
 {let t0='light';try{t0=localStorage.getItem('eetheme')||'light'}catch(e){}setTh(TH.some(x=>x[0]==t0)?t0:'light')}
 </script></body></html>
+=======
+</script></body></html>
+>>>>>>> ce3a134adef3d732b135ee5978d0a6b137c913e8
